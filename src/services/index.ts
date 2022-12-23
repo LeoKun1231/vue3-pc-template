@@ -2,7 +2,7 @@
  * @Author: hqk
  * @Date: 2022-12-21 19:28:46
  * @LastEditors: hqk
- * @LastEditTime: 2022-12-21 20:00:46
+ * @LastEditTime: 2022-12-23 19:01:19
  * @Description:
  */
 import { BASE_URL, TIME_OUT } from './config'
@@ -13,34 +13,14 @@ const myRequest = new AppRequest({
   timeout: TIME_OUT,
   interceptors: {
     requestSuccessFn(config) {
-      console.log('实例请求成功')
+      // console.log('实例请求成功')
       return config
     },
     responseSuccessFn(res) {
-      console.log('实例响应成功')
+      // console.log('实例响应成功')
       return res
     }
   }
 })
 
-interface IHomeData {
-  list: any[]
-  code: string
-}
-myRequest
-  .request<IHomeData>({
-    url: '/entire/list',
-    interceptors: {
-      requestSuccessFn(config) {
-        console.log('单个请求成功')
-        return config
-      },
-      responseSuccessFn(res) {
-        console.log('单个请求成功')
-        return res
-      }
-    }
-  })
-  .then((res) => {
-    console.log(res.list)
-  })
+export default myRequest
